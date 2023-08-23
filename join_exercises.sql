@@ -1,6 +1,6 @@
 USE employees;
 
-SELECT d.dept_name As D_name,  CONCAT(e.first_name, ' ', e.last_name) AS D_Manager
+SELECT d.dept_name As 'Department_name',  CONCAT(e.first_name, ' ', e.last_name) AS 'D_Manager'
 FROM departments d
         JOIN dept_manager dm
             ON d.dept_no = dm.dept_no
@@ -17,4 +17,15 @@ WHERE d.dept_no = 'd009'
 AND d.to_date = '9999-01-01'
 AND t.to_date = '9999-01-01'
 GROUP BY t.title;
-USE employees;
+
+SELECT d.dept_name As 'Department_name',  CONCAT(e.first_name, ' ', e.last_name) AS 'D_Manager', s.salary AS salary
+FROM departments d
+         JOIN dept_manager dm
+              ON d.dept_no = dm.dept_no
+         JOIN employees e
+              ON dm.emp_no = e.emp_no
+        JOIN salaries s
+            ON e.emp_no = s.emp_no
+WHERE dm.to_date = '9999-01-01'
+AND s.to_date = '9999-01-01'
+ORDER BY d.dept_name;
